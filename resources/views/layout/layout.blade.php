@@ -832,9 +832,25 @@
             }
         }
     </style>
+
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primaryColor: '#003C43',
+                        secondaryColor: '#d5a733',
+                    }
+                }
+            }
+        }
+    </script>
+
+
 </head>
 
-<body class="antialiased bg-emerald-950">
+<body class="bg-gradient-to-b from-teal-950 to-teal-900 min-h-screen p-4">
 
     @yield('content')
     {{--
