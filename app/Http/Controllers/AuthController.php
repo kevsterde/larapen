@@ -13,4 +13,10 @@ class AuthController extends Controller
 
         return view('auth.login');
     }
+
+    public function forgotpassword()
+    {
+
+        return view('auth.forgotPassword');
+    }
 }
