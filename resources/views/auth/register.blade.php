@@ -48,7 +48,7 @@
 
                 <div class="relative mb-5">
                     <input type="text" id="confirmpassword" name="confirmpassword"
-                        class="bg-opacity-50 block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-white bg-primaryColor  appearance-none border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-white peer  border border-1 border-white"
+                        class="bg-opacity-50 block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-white bg-primaryColor appearance-none border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-white peer  border border-1 border-white"
                         placeholder=" " />
 
                     <label for="confirmpassword"
