@@ -14,9 +14,13 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function forgotpassword()
-    {
 
+    public function register(){
+        return view('auth.register');
+    }
+  
+    public function forgotpassword(){
         return view('auth.forgotPassword');
     }
 }
+
