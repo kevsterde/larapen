@@ -22,3 +22,4 @@ Route::get('/', function () {
 
 Route::get('/login', [AuthController::class, 'login'])->middleware('guest')->name('login');
 Route::get('/register', [AuthController::class, 'register']) ->middleware('guest')->name('register') ;
+Route::get('/forgotpassword', [AuthController::class, 'forgotpassword'])->middleware('guest')->name('forgotpassword');
