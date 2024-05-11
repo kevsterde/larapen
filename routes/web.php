@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
 
 Route::get('/login', [AuthController::class, 'login'])->middleware('guest')->name('login');
-Route::get('/register', [AuthController::class, 'register']) ->middleware('guest')->name('register') ;
+Route::get('/register', [AuthController::class, 'register'])->middleware('guest')->name('register');
 Route::get('/forgotpassword', [AuthController::class, 'forgotpassword'])->middleware('guest')->name('forgotpassword');
