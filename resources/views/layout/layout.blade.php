@@ -12,10 +12,16 @@
 
     {{-- <link href="https://bootswatch.com/5/slate/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"> --}}
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss-intellisense"></script>
+
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
     <!-- Styles -->
+
+
+
+
     <style>
         /* ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com */
         *,
@@ -833,19 +839,21 @@
         }
     </style>
 
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primaryColor: '#003C43',
-                        secondaryColor: '#d5a733',
-                    }
+        
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primaryColor: '#003C43',
+                    secondaryColor: '#d5a733',
                 }
             }
         }
-    </script>
+    }
+</script>
+
+
 
 
 </head>
