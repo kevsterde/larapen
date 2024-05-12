@@ -15,7 +15,7 @@
                         class="bg-opacity-50 block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-white bg-primaryColor  appearance-none border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-white peer  border border-1 border-white"
                         placeholder=" " />
 
-                    <label for="username    "
+                    <label for="username"
                         class="absolute text-sm text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Username</label>
 
                     <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span
