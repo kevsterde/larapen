@@ -842,26 +842,26 @@
         }
     </style>
 
-        
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                colors: {
-                    primaryColor: '#003C43',
-                    secondaryColor: '#d5a733',
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primaryColor: '#003C43',
+                        secondaryColor: '#d5a733',
+                    }
                 }
             }
         }
-    }
-</script>
+    </script>
 
 
 
 
 </head>
 
-<body class="bg-gradient-to-b from-teal-950 to-teal-900 min-h-screen p-4">
+<body class="bg-gradient-to-b from-teal-950 to-teal-900 min-h-screen">
 
     @yield('content')
     {{--
