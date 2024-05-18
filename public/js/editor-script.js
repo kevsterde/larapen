@@ -14,13 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const jsContent = `<script>(function(){${localStorage.getItem(
             "js_code"
         )}})();</script>`;
+        const fullHtmlContent = `<!DOCTYPE html><html><head>${cssContent}</head><body>${htmlContent}${jsContent}</body></html>`;
 
         // output.contentDocument.open();
         // output.contentDocument.write(cssContent + htmlContent + jsContent);
         // output.contentDocument.close();
 
         output.contentDocument.open();
-        output.contentDocument.writeln(cssContent + htmlContent + jsContent);
+        output.contentDocument.writeln(fullHtmlContent);
         output.contentDocument.close();
     }
 

@@ -1,6 +1,4 @@
-@push('scripts')
-    <script src="{{ asset('js/script.js') }}"></script>
-@endpush
+
 
 @extends('layout.layout')
 @section('title', 'Editor')
@@ -59,3 +57,8 @@
 </div>
 
 @endsection
+ 
+
+@push('scripts')
+<script src="{{ asset('js/editor-script.js') }}"></script>
+@endpush
