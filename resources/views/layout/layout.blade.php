@@ -863,13 +863,19 @@
 
 <body class="bg-gradient-to-b from-teal-950 to-teal-900 min-h-screen">
 
+    @if (!Request::is('login') && !Request::is('forgotpassword') && !Request::is('register'))
+        @include('components.navigation')
+    @endif
+
+
     @yield('content')
     {{--
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script> --}}
 </body>
-
-@stack('scripts')
+@if (Request::is('editor'))
+    @stack('scripts')
+@endif
 
 </html>
