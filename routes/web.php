@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EditorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,6 @@ Route::get('/register', [AuthController::class, 'register'])->middleware('guest'
 Route::get('/forgotpassword', [AuthController::class, 'forgotpassword'])->middleware('guest')->name('forgotpassword');
 
 
+Route::get('/editor', [EditorController::class, 'index'])->name('editor');
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('guest')->name('profile');
+
