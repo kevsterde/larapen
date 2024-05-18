@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="sm:max-w-xl sm:mx-auto p-10 mt-10">
-        <img class=" w-24 sm:w-40 mx-auto mb-5" src="/images/logo.png" alt="logo">
+        <a href={{ route('home') }}><img class=" w-24 sm:w-40 mx-auto mb-5" src="/images/logo.png" alt="logo"></a>
         <h1 class="text-white text-center text-4xl font-bold uppercase">Welcome To Larapen</h1>
 
         <form action="" class="rounded-lg p-5 mt-4 bg-[#D9D9D9] bg-opacity-20 backdrop-blur-md">
@@ -18,8 +18,8 @@
                     <label for="username"
                         class="absolute text-sm text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Username</label>
 
-                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span
-                            class="font-medium">Oh, snapp!</span> Some error message.</p>
+                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span class="font-medium">Oh, snapp!</span>
+                        Some error message.</p>
                 </div>
 
                 <div class="relative mb-5">
@@ -30,8 +30,8 @@
                     <label for="email"
                         class="absolute text-sm text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email</label>
 
-                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span
-                            class="font-medium">Oh, snapp!</span> Some error message.</p>
+                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span class="font-medium">Oh, snapp!</span>
+                        Some error message.</p>
                 </div>
 
                 <div class="relative mb-5">
@@ -42,8 +42,8 @@
                     <label for="password"
                         class="absolute text-sm text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Password</label>
 
-                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span
-                            class="font-medium">Oh, snapp!</span> Some error message.</p>
+                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span class="font-medium">Oh, snapp!</span>
+                        Some error message.</p>
                 </div>
 
                 <div class="relative mb-5">
@@ -52,10 +52,11 @@
                         placeholder=" " />
 
                     <label for="confirmpassword"
-                        class="absolute text-sm text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Confirm Password</label>
+                        class="absolute text-sm text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Confirm
+                        Password</label>
 
-                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span
-                            class="font-medium">Oh, snapp!</span> Some error message.</p>
+                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span class="font-medium">Oh, snapp!</span>
+                        Some error message.</p>
                 </div>
 
                 <div class="relative">
@@ -67,15 +68,15 @@
 
                 <div class="text-center text-white">
                     Already in Larapen? <a href="/login" class="hover:underline">Sign In</a>
-                  
+
                 </div>
 
-                
+
             </div>
 
         </form>
 
-        
+
     </div>
 
 @endsection

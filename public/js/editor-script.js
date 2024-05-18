@@ -5,12 +5,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const output = document.getElementById("editor-output");
 
     function run() {
+        console.log("RUUNN");
+
         localStorage.setItem("html_code", htmlCode.value);
         localStorage.setItem("css_code", cssCode.value);
         localStorage.setItem("js_code", jsCode.value);
 
         const htmlContent = localStorage.getItem("html_code");
-        const cssContent = `<style>${localStorage.getItem("css_code")}</style>`;
+        const cssContent = `<style>${localStorage.getItem("css_code")}</style>
+        <link href=" https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css " rel="stylesheet">`;
         const jsContent = `<script>(function(){${localStorage.getItem(
             "js_code"
         )}})();</script>`;
@@ -25,9 +28,20 @@ document.addEventListener("DOMContentLoaded", function () {
         output.contentDocument.close();
     }
 
-    htmlCode.addEventListener("keyup", run);
-    cssCode.addEventListener("keyup", run);
-    jsCode.addEventListener("keyup", run);
+    let timeoutId;
+
+    htmlCode.addEventListener("keyup", waitOneSec);
+    cssCode.addEventListener("keyup", waitOneSec);
+    jsCode.addEventListener("keyup", waitOneSec);
+
+    function waitOneSec() {
+        // Clear any existing timeout
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+        // Set a new timeout to call the run function after 1 second
+        timeoutId = setTimeout(run, 1000);
+    }
 
     // Wait for the iframe to load before running the code
     output.onload = run;

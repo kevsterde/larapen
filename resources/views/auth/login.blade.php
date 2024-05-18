@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="sm:max-w-xl sm:mx-auto p-10 mt-10">
-        <img class=" w-24 sm:w-40 mx-auto mb-5" src="/images/logo.png" alt="logo">
+        <a href={{ route('home') }}><img class=" w-24 sm:w-40 mx-auto mb-5" src="/images/logo.png" alt="logo"></a>
         <h1 class="text-white text-center text-4xl font-bold uppercase">Sign in to Larapen</h1>
 
         <form action="" class="backdrop-blur-3xl bg-[#D9D9D9] bg-opacity-20 rounded-lg p-5 mt-4">
