@@ -38,12 +38,23 @@
                     <span>Create New Pen</span>
                 </a>
                 <a href="/profile">
-                    <img src="https://picsum.photos/200/300?random=1" alt=""
+                    <img src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ auth()->user()->name }}"
+                        alt='{{ auth()->user()->name }}'
                         class="w-[54px]  aspect-square rounded hover:ring-2 hover:ring-yellow-400">
+
+
+
+
                 </a>
 
-                <a href="{{ url('/logout') }}"
-                    class="font-semibold text-white hover:text-secondaryColor  focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Logout</a>
+
+
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+
+                    <button type="submit"
+                        class="font-semibold text-white hover:text-secondaryColor  focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Logout</button>
+                </form>
             @else
                 <a href="{{ route('login') }}"
                     class="font-semibold text-white hover:text-secondaryColor  focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
