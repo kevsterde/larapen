@@ -1,6 +1,5 @@
 @extends('layout.layout')
 
-@include('components.navigation')
 
 @section('title', 'Profile')
 
