@@ -28,5 +28,7 @@ Route::get('/forgotpassword', [AuthController::class, 'forgotpassword'])->middle
 
 
 Route::get('/editor', [EditorController::class, 'index'])->name('editor');
-Route::get('/profile', [ProfileController::class, 'index'])->middleware('guest')->name('profile');
+Route::post('/editor', [EditorController::class, 'create'])->name('editor.add');
 
+
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('guest')->name('profile');

@@ -10,8 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("js_code", jsCode.value);
 
         const htmlContent = localStorage.getItem("html_code");
-        const cssContent = `<style>${localStorage.getItem("css_code")}</style>
-        <link href=" https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css " rel="stylesheet">`;
+        const cssContent = `<link href=" https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css " rel="stylesheet"> <style>${localStorage.getItem(
+            "css_code"
+        )}</style>`;
         const jsContent = `<script>(function(){${localStorage.getItem(
             "js_code"
         )}})();</script>`;
