@@ -8,55 +8,58 @@
         <a href={{ route('home') }}><img class=" w-24 sm:w-40 mx-auto mb-5" src="/images/logo.png" alt="logo"></a>
         <h1 class="text-white text-center text-4xl font-bold uppercase">Welcome To Larapen</h1>
 
-        <form action="" class="rounded-lg p-5 mt-4 bg-[#D9D9D9] bg-opacity-20 backdrop-blur-md">
+        <form action={{ route('register') }} class="rounded-lg p-5 mt-4 bg-[#D9D9D9] bg-opacity-20 backdrop-blur-md"
+            method="POST">
+            @csrf
             <div class=" mt-3">
                 <div class="relative mb-5">
-                    <input type="text" id="username" name="username"
+                    <input type="text" id="name" name="name" value="{{ old('name') }}"
                         class="bg-opacity-50 block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-white bg-primaryColor  appearance-none border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-white peer  border border-1 border-white"
                         placeholder=" " />
 
-                    <label for="username"
+                    <label for="name"
                         class="absolute text-sm text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Username</label>
-
-                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span class="font-medium">Oh, snapp!</span>
-                        Some error message.</p>
+                    @error('name')
+                        <p id="filled_error_help" class="mt-2 text-xs text-red-400">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="relative mb-5">
-                    <input type="text" id="email" name="email"
+                    <input type="text" id="email" name="email" value="{{ old('email') }}"
                         class="bg-opacity-50 block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-white bg-primaryColor  appearance-none border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-white peer  border border-1 border-white"
                         placeholder=" " />
 
                     <label for="email"
                         class="absolute text-sm text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email</label>
-
-                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span class="font-medium">Oh, snapp!</span>
-                        Some error message.</p>
+                    @error('email')
+                        <p id="filled_error_help" class="mt-2 text-xs text-red-400">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="relative mb-5">
-                    <input type="text" id="password" name="password"
+                    <input type="text" id="password" name="password" value="{{ old('password') }}"
                         class="bg-opacity-50 block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-white bg-primaryColor  appearance-none border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-white peer  border border-1 border-white"
                         placeholder=" " />
 
                     <label for="password"
                         class="absolute text-sm text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Password</label>
-
-                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span class="font-medium">Oh, snapp!</span>
-                        Some error message.</p>
+                    @error('password')
+                        <p id="filled_error_help" class="mt-2 text-xs text-red-400">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="relative mb-5">
-                    <input type="text" id="confirmpassword" name="confirmpassword"
+                    <input type="text" id="password_confirmation" name="password_confirmation"
+                        value="{{ old('password_confirmation') }}"
                         class="bg-opacity-50 block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-white bg-primaryColor appearance-none border-gray-600 focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-white peer  border border-1 border-white"
                         placeholder=" " />
 
-                    <label for="confirmpassword"
+                    <label for="password_confirmation"
                         class="absolute text-sm text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Confirm
                         Password</label>
-
-                    <p id="filled_error_help" class="mt-2 text-xs text-red-400"><span class="font-medium">Oh, snapp!</span>
-                        Some error message.</p>
+                    @error('password')
+                        <p id="filled_error_help" class="mt-2 text-xs text-red-400">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="relative">

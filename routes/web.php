@@ -21,12 +21,19 @@ Route::get('/', function () {
 })->name('home');
 
 
+Route::group(['middleware' => 'guest'], function () {
 
-Route::get('/login', [AuthController::class, 'login'])->middleware('guest')->name('login');
-Route::get('/register', [AuthController::class, 'register'])->middleware('guest')->name('register');
-Route::get('/forgotpassword', [AuthController::class, 'forgotpassword'])->middleware('guest')->name('forgotpassword');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
+    // Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'store'])->name('register');
+
+    Route::get('/forgotpassword', [AuthController::class, 'forgotpassword'])->name('forgotpassword');
+});
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/editor', [EditorController::class, 'index'])->name('editor');
-Route::get('/profile', [ProfileController::class, 'index'])->middleware('guest')->name('profile');
-
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile');
