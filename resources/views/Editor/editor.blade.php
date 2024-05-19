@@ -20,7 +20,7 @@
         </section>
 
         <div class="text-center flex-1 text-xl text-white font-bold">
-            {{-- <h1>Card w Vertical Text</h1> --}}
+            
             <input type="text" name="codetitle" value="Card w Vertical Text"
                 class="text-5xl text-white bg-transparent focus:outline-none w-full text-center px-2 border-b-2 focus:border-b-2
                 border-transparent focus:border-white">

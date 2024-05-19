@@ -13,9 +13,9 @@ class Editor extends Model
         'user_id',
         'code_id',
         'title',
-        'html',
-        'css',
-        'js',
+        'htmlcode',
+        'csscode',
+        'jscode',
     ];
 
     public function user(): BelongsTo

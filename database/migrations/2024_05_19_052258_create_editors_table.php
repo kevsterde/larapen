@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('editors', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->id('code_id');
             $table->string('title')->nullable();
-            $table->text('html')->nullable();
-            $table->text('css')->nullable();
-            $table->text('js')->nullable();
+            $table->text('htmlcode')->nullable();
+            $table->text('csscode')->nullable();
+            $table->text('jscode')->nullable();
             $table->timestamps();
             
         });
