@@ -71,4 +71,5 @@
 
 @push('scripts')
     <script src="{{ asset('js/editor-script.js') }}"></script>
+    <div>Hi</div>
 @endpush

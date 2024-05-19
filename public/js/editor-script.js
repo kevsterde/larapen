@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const output = document.getElementById("editor-output");
 
     function run() {
-        console.log("RUUNN");
-
         localStorage.setItem("html_code", htmlCode.value);
         localStorage.setItem("css_code", cssCode.value);
         localStorage.setItem("js_code", jsCode.value);
