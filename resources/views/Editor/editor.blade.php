@@ -4,9 +4,28 @@
 
 @section('content')
 
- <form action="{{ route('editor.add') }}" method="post">
+@if($editor)
+            <div class="editor-details">
+                <h2>Editor Details</h2>
+                <p><strong>ID:</strong> {{ $editor->code_id }}</p>
+                <p><strong>Title:</strong> {{ $editor->title }}</p>
+                <p><strong>HTML Code:</strong> {{ $editor->htmlcode }}</p>
+                <p><strong>CSS Code:</strong> {{ $editor->csscode }}</p>
+                <p><strong>JS Code:</strong> {{ $editor->jscode }}</p>
+            </div>
+        @else
+            <p>No editor data available.</p>
+        @endif
+
+ <form action="{{ isset($editor) ? route('editor.update', $editor->code_id) : route('editor.add') }}" method="post">
     @csrf
-    @method('post')
+    @if(isset($editor))
+    @method('PUT')
+    @else
+    @method('POST')
+    @endif
+
+
     <div class="flex justify-between items-center p-4 gap-4">
         <section class="flex w-80 max-w-full justify-center gap-2 items-center">
             <figure class="aspect-square w-24"><img src="https://picsum.photos/300/300" alt=""></figure>
@@ -28,7 +47,7 @@
 
 
         <div>
-            <button type="submit" class="py-1 px-4 bg-primaryColor text-white">Save</button>
+            <button type="submit" class="py-1 px-4 bg-primaryColor text-white">{{ isset($editor) ? 'Update' : 'Save' }}</button>
             <button type="button" class="py-1 px-4 bg-secondaryColor text-white">Align</button>
         </div>
 
@@ -43,21 +62,21 @@
                         <h2 class="text-xl text-white font-bold inline-block leading-9">HTML</h2>
                     </div>
                     <textarea id="html-code" name="htmlcode"
-                        class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none"></textarea>
+                        class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none">{{ old('htmlcode', isset($editor) ? $editor->htmlcode : '') }}</textarea>
                 </div>
                 <div class="w-full relative pt-9">
                     <div class="absolute w-full top-0 left-0 right-0 bg-secondaryColor px-2">
                         <h2 class="text-xl text-white font-bold inline-block leading-9">CSS</h2>
                     </div>
                     <textarea id="css-code" name="csscode"
-                        class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none"></textarea>
+                        class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none">{{ old('csscode', isset($editor) ? $editor->csscode : '') }}</textarea>
                 </div>
                 <div class="w-full relative pt-9">
                     <div class="absolute w-full top-0 left-0 right-0 bg-secondaryColor px-2">
                         <h2 class="text-xl text-white font-bold inline-block leading-9">Javascript</h2>
                     </div>
                     <textarea id="js-code" name="jscode"
-                        class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none"></textarea>
+                        class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none">{{ old('jscode', isset($editor) ? $editor->jscode : '') }}</textarea>
                 </div>
             </div>
         </div>

@@ -36,10 +36,9 @@ Route::group(['middleware' => 'guest'], function () {
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/editor', [EditorController::class, 'index'])->name('editor');
-Route::get('/editor/{id}', [EditorController::class, 'index'])->name('editor.display');
+Route::get('/editor/{user_id}/{id}', [EditorController::class, 'index'])->name('editor.display');
 
-
-Route::post('/editor', [EditorController::class, 'create'])->name('editor.add');
 Route::put('/editor/{id}', [EditorController::class, 'update'])->name('editor.update');
+Route::post('/editor', [EditorController::class, 'create'])->name('editor.add');
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile');

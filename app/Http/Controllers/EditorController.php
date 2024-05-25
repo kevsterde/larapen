@@ -12,9 +12,17 @@ class EditorController extends Controller
 {
     //
 
-    public function index(){
-        return view('Editor.editor');
+    public function index($user_id=null , $id=null){
+
+
+        $editor = null;
+        if($user_id && $id){
+            $editor = Editor::where('user_id' , $user_id)->where('code_id', $id)->first();
+        }
+      
+        return view('Editor.editor' , compact('editor'));
     }
+
 
 
     public function create(Request $request ){
@@ -24,11 +32,25 @@ class EditorController extends Controller
         $result =  Editor::create([
             'user_id' => $Authuser->id,
             'title' => $data['codetitle'],
-            'html' => $data['htmlcode'],
-            'css' => $data['csscode'],
-            'js' => $data['jscode'],
+            'htmlcode' => $data['htmlcode'],
+            'csscode' => $data['csscode'],
+            'jscode' => $data['jscode'],
         ]);
 
-        return redirect('/editor/'. $result->id)->with('success', 'Editor Created Successfully');
+        $userWithEditors = $Authuser->load('editors');
+        //  dd($userWithEditors->editors);
+        
+        //  return redirect('/editor/'. $result->user_id . '/' .$result->id)->with('success', 'Editor Created Successfully');
+        return redirect()->route('editor.display' , ['user_id' => $result->user_id , 'id' => $result->code_id])
+        ->with('success', 'Editor Created Successfully');
+    }
+
+
+    public function update(Request $request, $id){
+        $editorId = Editor::where('code_id', $id)->first();
+        $editorId->update($request->all());
+
+        return redirect()->route('editor.display', ['user_id' => $editorId->user_id, 'id' => $editorId->code_id])
+        ->with('success', 'Editor Updated Successfully');
     }
 }
