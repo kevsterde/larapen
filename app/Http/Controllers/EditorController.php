@@ -15,11 +15,24 @@ class EditorController extends Controller
     public function index($user_id=null , $id=null){
 
 
+        // if($user_id == null)
+        // {
+        //     return redirect()->route('login');
+        // }
+
+
+
         $editor = null;
+
+
         if($user_id && $id){
             $editor = Editor::where('user_id' , $user_id)->where('code_id', $id)->first();
         }
-      
+        if($editor == null){
+            return redirect()->route('404');
+        }
+
+
         return view('Editor.editor' , compact('editor'));
     }
 
@@ -27,11 +40,11 @@ class EditorController extends Controller
 
     public function create(Request $request ){
         $Authuser = Auth::user();
-       
+
          $data = $request->all();
         $result =  Editor::create([
             'user_id' => $Authuser->id,
-            'title' => $data['codetitle'],
+            'title' => $data['title'],
             'htmlcode' => $data['htmlcode'],
             'csscode' => $data['csscode'],
             'jscode' => $data['jscode'],
@@ -39,16 +52,25 @@ class EditorController extends Controller
 
         $userWithEditors = $Authuser->load('editors');
         //  dd($userWithEditors->editors);
-        
+
         //  return redirect('/editor/'. $result->user_id . '/' .$result->id)->with('success', 'Editor Created Successfully');
         return redirect()->route('editor.display' , ['user_id' => $result->user_id , 'id' => $result->code_id])
         ->with('success', 'Editor Created Successfully');
     }
 
 
-    public function update(Request $request, $id){
+    public function update(Request $request,$user_id, $id){
+
+        if($id == null)
+        {
+            return redirect()->route('404');
+        }
+
         $editorId = Editor::where('code_id', $id)->first();
+
         $editorId->update($request->all());
+
+        // dd($request->all());
 
         return redirect()->route('editor.display', ['user_id' => $editorId->user_id, 'id' => $editorId->code_id])
         ->with('success', 'Editor Updated Successfully');

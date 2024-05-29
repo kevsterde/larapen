@@ -4,95 +4,127 @@
 
 @section('content')
 
-@if($editor)
-            <div class="editor-details">
-                <h2>Editor Details</h2>
-                <p><strong>ID:</strong> {{ $editor->code_id }}</p>
-                <p><strong>Title:</strong> {{ $editor->title }}</p>
-                <p><strong>HTML Code:</strong> {{ $editor->htmlcode }}</p>
-                <p><strong>CSS Code:</strong> {{ $editor->csscode }}</p>
-                <p><strong>JS Code:</strong> {{ $editor->jscode }}</p>
-            </div>
+    {{-- @if ($editor)
+        <div class="editor-details">
+            <h2>Editor Details</h2>
+            <p><strong>ID:</strong> {{ $editor->code_id }}</p>
+            <p><strong>Title:</strong> {{ $editor->title }}</p>
+            <p><strong>HTML Code:</strong> {{ $editor->htmlcode }}</p>
+            <p><strong>CSS Code:</strong> {{ $editor->csscode }}</p>
+            <p><strong>JS Code:</strong> {{ $editor->jscode }}</p>
+        </div>
+    @else
+        <p>No editor data available.</p>
+    @endif --}}
+
+    <form
+        action="{{ isset($editor) ? route('editor.update', ['user_id' => $editor->user_id, 'id' => $editor->code_id]) : route('editor.add') }}"
+        method="post">
+        @if (auth()->user() == $editor->user)
+            @csrf
+        @endif
+        @if (isset($editor))
+            @method('PUT')
         @else
-            <p>No editor data available.</p>
+            @method('POST')
         @endif
 
- <form action="{{ isset($editor) ? route('editor.update', $editor->code_id) : route('editor.add') }}" method="post">
-    @csrf
-    @if(isset($editor))
-    @method('PUT')
-    @else
-    @method('POST')
-    @endif
+
+        <div class="flex justify-between items-center p-4 gap-4">
+            <section class="flex w-80 max-w-fit justify-center gap-2 ">
+                <figure class="aspect-square w-24"> <img
+                        src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ isset($editor) ? $editor->user->name : auth()->user()->name }}"
+                        alt='{{ isset($editor) ? $editor->user->name : auth()->user()->name }}'></figure>
+                <div class="text-white">
+                    @if (isset($editor))
+                        <h1 class="text-xl font-bold">{{ $editor->user->name }}</h1>
+                    @else
+                        <h1 class="text-xl font-bold">{{ Auth::user()->name }}</h1>
+                    @endif
+
+                    @if (auth()->user() != $editor->user)
+                        <section class="flex justify-start gap-2 items-center mt-2">
+                            <button class="py-1 px-4 bg-primaryColor text-white">Follow</button>
+                            <button class="py-1 px-4 bg-primaryColor text-white">Heart</button>
+                        </section>
+                    @endif
 
 
-    <div class="flex justify-between items-center p-4 gap-4">
-        <section class="flex w-80 max-w-full justify-center gap-2 items-center">
-            <figure class="aspect-square w-24"><img src="https://picsum.photos/300/300" alt=""></figure>
-            <div class="text-white">
-                <h1 class="text-xl font-bold">Rhysin Villahermosa</h1>
-                <section class="flex justify-start gap-2 items-center mt-2">
-                    <button class="py-1 px-4 bg-primaryColor text-white">Follow</button>
-                    <button class="py-1 px-4 bg-primaryColor text-white">Heart</button>
-                </section>
+                </div>
+            </section>
+
+            <div class="text-center flex-1 text-xl text-white font-bold">
+
+                @if (auth()->user() != $editor->user)
+                    <h1 class="text-5xl">{{ $editor->title }}</h1>
+                @else
+                    <input type="text" name="title" value="{{ isset($editor) ? $editor->title : 'Dummy Title' }}"
+                        class="text-5xl text-white bg-transparent focus:outline-none w-full text-center px-2 border-b-2 focus:border-b-2
+                  border-gray-900 focus:border-white">
+                @endif
+
             </div>
-        </section>
 
-        <div class="text-center flex-1 text-xl text-white font-bold">
-            
-            <input type="text" name="codetitle" value="Card w Vertical Text"
-                class="text-5xl text-white bg-transparent focus:outline-none w-full text-center px-2 border-b-2 focus:border-b-2
-                border-transparent focus:border-white">
+
+            <div>
+                @if (isset($editor))
+                    @if ($editor->user == auth()->user())
+                        <button type="submit"
+                            class="py-1 px-4 bg-primaryColor text-white">{{ isset($editor) ? 'Update' : 'Save' }}</button>
+                    @endif
+                @endif
+
+                @if (!isset($editor))
+                    <button type="submit" class="py-1 px-4 bg-primaryColor text-white">Save</button>
+                @endif
+
+                <button type="button" class="py-1 px-4 bg-secondaryColor text-white">Align</button>
+
+            </div>
+
         </div>
 
 
-        <div>
-            <button type="submit" class="py-1 px-4 bg-primaryColor text-white">{{ isset($editor) ? 'Update' : 'Save' }}</button>
-            <button type="button" class="py-1 px-4 bg-secondaryColor text-white">Align</button>
-        </div>
-
-    </div>
-
-
-    <div class="w-full min-h-[80vh] flex flex-col gap-5 px-4 pb-4">
-        <div>
-            <div class="flex justify-between gap-5">
-                <div class="w-full relative pt-9">
-                    <div class="absolute w-full top-0 left-0 right-0 bg-secondaryColor px-2">
-                        <h2 class="text-xl text-white font-bold inline-block leading-9">HTML</h2>
+        <div class="w-full min-h-[80vh] flex flex-col gap-5 px-4 pb-4">
+            <div>
+                <div class="flex justify-between gap-5">
+                    <div class="w-full relative pt-9">
+                        <div class="absolute w-full top-0 left-0 right-0 bg-secondaryColor px-2">
+                            <h2 class="text-xl text-white font-bold inline-block leading-9">HTML</h2>
+                        </div>
+                        <textarea id="html-code" name="htmlcode"
+                            class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none">{{ old('htmlcode', isset($editor) ? $editor->htmlcode : '') }}</textarea>
                     </div>
-                    <textarea id="html-code" name="htmlcode"
-                        class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none">{{ old('htmlcode', isset($editor) ? $editor->htmlcode : '') }}</textarea>
-                </div>
-                <div class="w-full relative pt-9">
-                    <div class="absolute w-full top-0 left-0 right-0 bg-secondaryColor px-2">
-                        <h2 class="text-xl text-white font-bold inline-block leading-9">CSS</h2>
+                    <div class="w-full relative pt-9">
+                        <div class="absolute w-full top-0 left-0 right-0 bg-secondaryColor px-2">
+                            <h2 class="text-xl text-white font-bold inline-block leading-9">CSS</h2>
+                        </div>
+                        <textarea id="css-code" name="csscode"
+                            class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none">{{ old('csscode', isset($editor) ? $editor->csscode : '') }}</textarea>
                     </div>
-                    <textarea id="css-code" name="csscode"
-                        class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none">{{ old('csscode', isset($editor) ? $editor->csscode : '') }}</textarea>
-                </div>
-                <div class="w-full relative pt-9">
-                    <div class="absolute w-full top-0 left-0 right-0 bg-secondaryColor px-2">
-                        <h2 class="text-xl text-white font-bold inline-block leading-9">Javascript</h2>
+                    <div class="w-full relative pt-9">
+                        <div class="absolute w-full top-0 left-0 right-0 bg-secondaryColor px-2">
+                            <h2 class="text-xl text-white font-bold inline-block leading-9">Javascript</h2>
+                        </div>
+                        <textarea id="js-code" name="jscode"
+                            class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none">{{ old('jscode', isset($editor) ? $editor->jscode : '') }}</textarea>
                     </div>
-                    <textarea id="js-code" name="jscode"
-                        class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none">{{ old('jscode', isset($editor) ? $editor->jscode : '') }}</textarea>
                 </div>
             </div>
+
+
+            <div class="w-full bg-white grow relative">
+                <iframe id="editor-output" class="w-full h-full absolute inset-0"></iframe>
+            </div>
+
         </div>
-
-
-        <div class="w-full bg-white grow relative">
-            <iframe id="editor-output" class="w-full h-full absolute inset-0"></iframe>
-        </div>
-
-    </div>
- </form>
+    </form>
 
 @endsection
 
 
+
+
 @push('scripts')
     <script src="{{ asset('js/editor-script.js') }}"></script>
-
 @endpush

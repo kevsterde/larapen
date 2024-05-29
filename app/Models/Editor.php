@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Editor extends Model
 {
     use HasFactory;
-    
+
     protected $primaryKey = 'code_id';
     protected $fillable =[
         'user_id',
@@ -19,7 +19,12 @@ class Editor extends Model
         'jscode',
     ];
 
-    public function user(): BelongsTo
+    // public function user(): BelongsTo
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
