@@ -4,19 +4,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const jsCode = document.getElementById("js-code");
     const output = document.getElementById("editor-output");
 
+    var editorHTML = ace.edit("editorHTML");
+    editorHTML.setTheme("ace/theme/monokai");
+    editorHTML.session.setMode("ace/mode/html");
+
     function run() {
-        console.log("RUUNN");
+        htmlCode.value = editorHTML.getValue();
 
-        localStorage.setItem("html_code", htmlCode.value);
-        localStorage.setItem("css_code", cssCode.value);
-        localStorage.setItem("js_code", jsCode.value);
+        // localStorage.setItem("html_code", htmlCode.value);
+        // localStorage.setItem("css_code", cssCode.value);
+        // localStorage.setItem("js_code", jsCode.value);
 
-        const htmlContent = localStorage.getItem("html_code");
-        const cssContent = `<style>${localStorage.getItem("css_code")}</style>
-        <link href=" https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css " rel="stylesheet">`;
-        const jsContent = `<script>(function(){${localStorage.getItem(
-            "js_code"
-        )}})();</script>`;
+        // const htmlContent = localStorage.getItem("html_code");
+        // const cssContent = `<link href=" https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css " rel="stylesheet"> <style>${localStorage.getItem(
+        //     "css_code"
+        // )}</style>`;
+        // const jsContent = `<script>(function(){${localStorage.getItem(
+        //     "js_code"
+        // )}})();</script>`;
+        // const fullHtmlContent = `<!DOCTYPE html><html><head>${cssContent}</head><body>${htmlContent}${jsContent}</body></html>`;
+
+        const htmlContent = htmlCode.value;
+        const cssContent = `<link href=" https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css " rel="stylesheet"> <style>${cssCode.value}</style>`;
+        const jsContent = `<script>(function(){${jsCode.value}})();</script>`;
         const fullHtmlContent = `<!DOCTYPE html><html><head>${cssContent}</head><body>${htmlContent}${jsContent}</body></html>`;
 
         // output.contentDocument.open();
@@ -30,9 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let timeoutId;
 
-    htmlCode.addEventListener("keyup", waitOneSec);
+    // htmlCode.addEventListener("keyup", waitOneSec);
+
     cssCode.addEventListener("keyup", waitOneSec);
     jsCode.addEventListener("keyup", waitOneSec);
+    // editor.addEventListener("keyup", waitOneSec);
+    editorHTML.session.on("change", waitOneSec);
 
     function waitOneSec() {
         // Clear any existing timeout
@@ -47,9 +60,9 @@ document.addEventListener("DOMContentLoaded", function () {
     output.onload = run;
 
     // Set textarea values from localStorage
-    htmlCode.value = localStorage.getItem("html_code");
-    cssCode.value = localStorage.getItem("css_code");
-    jsCode.value = localStorage.getItem("js_code");
+    // htmlCode.value = localStorage.getItem("html_code");
+    // cssCode.value = localStorage.getItem("css_code");
+    // jsCode.value = localStorage.getItem("js_code");
 
     run(); // Run initially
 });

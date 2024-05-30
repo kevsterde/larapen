@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EditorController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [DashboardController::class, 'index'])->name('home');
 
 
 Route::group(['middleware' => 'guest'], function () {
@@ -33,7 +32,26 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/forgotpassword', [AuthController::class, 'forgotpassword'])->name('forgotpassword');
 });
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/editor', [EditorController::class, 'index'])->name('editor');
-Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile');
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/editor', [EditorController::class, 'index'])->name('editor');
+    Route::post('/editor', [EditorController::class, 'create'])->name('editor.add');
+
+    Route::put('/editor/{user_id}/{id}', [EditorController::class, 'update'])->middleware('auth')->name('editor.update');
+
+});
+// Route::get('/editor/{id}', function() {
+//     return redirect('/');
+// });
+
+
+Route::get('/editor/{user_id}/{id}', [EditorController::class, 'index'])->name('editor.display');
+
+
+
+Route::get('/profile', [ProfileController::class, 'profile'])->middleware('auth')->name('profile');
+Route::get('/404', [DashboardController::class, 'notFound'])->name('404');
+
+Route::get('/{id}', [DashboardController::class, 'iframeContent'])->name('iframeContent');
