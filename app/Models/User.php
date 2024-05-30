@@ -45,8 +45,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function editors(): hasMany
+    public function editors()
     {
-        return $this->hasMany(Editor::class);
+        return $this->hasMany(Editor::class)->latest('updated_at');
     }
 }

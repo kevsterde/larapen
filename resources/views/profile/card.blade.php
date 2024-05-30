@@ -9,12 +9,11 @@
     </div>
     <div class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
         <img class="object-cover object-center h-32"
-            src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ auth()->user()->name }}"
-            alt='{{ auth()->user()->name }}'>
+            src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $user->name }}" alt='{{ $user->name }}'>
     </div>
     <div class="text-center mt-2 px-5">
-        <h2 class="font-semibold text-3xl">Sarah Smith</h2>
-        <p class="text-gray-500">Freelance Web Designer</p>
+        <h2 class="font-semibold text-3xl">{{ $user->name }}</h2>
+        <p class="text-gray-500">{{ $user->email }}</p>
         <div class="text-left border-t mt-2">
             <h3 class="font-xl">Bio:</h3>
             <p class="text-gray-500">Freelance Web Designer</p>

@@ -15,10 +15,6 @@ class EditorController extends Controller
     public function index($user_id=null , $id=null){
 
 
-        // if($user_id == null)
-        // {
-        //     return redirect()->route('login');
-        // }
 
 
 
@@ -28,7 +24,8 @@ class EditorController extends Controller
         if($user_id && $id){
             $editor = Editor::where('user_id' , $user_id)->where('code_id', $id)->first();
         }
-        if($editor == null){
+
+        if($editor == null && Auth::user() == null){
             return redirect()->route('404');
         }
 

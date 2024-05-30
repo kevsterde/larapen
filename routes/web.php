@@ -51,5 +51,7 @@ Route::get('/editor/{user_id}/{id}', [EditorController::class, 'index'])->name('
 
 
 
-Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile');
+Route::get('/profile', [ProfileController::class, 'profile'])->middleware('auth')->name('profile');
 Route::get('/404', [DashboardController::class, 'notFound'])->name('404');
+
+Route::get('/{id}', [DashboardController::class, 'iframeContent'])->name('iframeContent');

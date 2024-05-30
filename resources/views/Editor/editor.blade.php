@@ -20,9 +20,12 @@
     <form
         action="{{ isset($editor) ? route('editor.update', ['user_id' => $editor->user_id, 'id' => $editor->code_id]) : route('editor.add') }}"
         method="post">
-        @if (auth()->user() == $editor->user)
+        @auth
             @csrf
-        @endif
+        @endauth
+
+
+
         @if (isset($editor))
             @method('PUT')
         @else
@@ -36,13 +39,14 @@
                         src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ isset($editor) ? $editor->user->name : auth()->user()->name }}"
                         alt='{{ isset($editor) ? $editor->user->name : auth()->user()->name }}'></figure>
                 <div class="text-white">
+
                     @if (isset($editor))
                         <h1 class="text-xl font-bold">{{ $editor->user->name }}</h1>
                     @else
                         <h1 class="text-xl font-bold">{{ Auth::user()->name }}</h1>
                     @endif
 
-                    @if (auth()->user() != $editor->user)
+                    @if (isset($editor) && auth()->user() != $editor->user)
                         <section class="flex justify-start gap-2 items-center mt-2">
                             <button class="py-1 px-4 bg-primaryColor text-white">Follow</button>
                             <button class="py-1 px-4 bg-primaryColor text-white">Heart</button>
@@ -55,13 +59,18 @@
 
             <div class="text-center flex-1 text-xl text-white font-bold">
 
-                @if (auth()->user() != $editor->user)
+
+                {{-- @if (auth()->user() != $editor->user) --}}
+                @if (isset($editor) && auth()->user() != $editor->user)
                     <h1 class="text-5xl">{{ $editor->title }}</h1>
                 @else
                     <input type="text" name="title" value="{{ isset($editor) ? $editor->title : 'Dummy Title' }}"
                         class="text-5xl text-white bg-transparent focus:outline-none w-full text-center px-2 border-b-2 focus:border-b-2
                   border-gray-900 focus:border-white">
                 @endif
+
+
+
 
             </div>
 
@@ -92,8 +101,10 @@
                         <div class="absolute w-full top-0 left-0 right-0 bg-secondaryColor px-2">
                             <h2 class="text-xl text-white font-bold inline-block leading-9">HTML</h2>
                         </div>
-                        <textarea id="html-code" name="htmlcode"
-                            class="px-5 box-border w-full min-h-32 bg-secondaryColor bg-opacity-20  h-full text-white focus:outline-none">{{ old('htmlcode', isset($editor) ? $editor->htmlcode : '') }}</textarea>
+
+                        <textarea id="html-code" name="htmlcode" class="hidden">{{ old('htmlcode', isset($editor) ? $editor->htmlcode : '') }}</textarea>
+                        <div id="editorHTML" class=" box-border w-full min-h-32 h-full text-white focus:outline-none">
+                            {{ old('htmlcode', isset($editor) ? $editor->htmlcode : '') }}</div>
                     </div>
                     <div class="w-full relative pt-9">
                         <div class="absolute w-full top-0 left-0 right-0 bg-secondaryColor px-2">
@@ -113,7 +124,7 @@
             </div>
 
 
-            <div class="w-full bg-white grow relative">
+            <div class="w-full bg-white grow relative ">
                 <iframe id="editor-output" class="w-full h-full absolute inset-0"></iframe>
             </div>
 
@@ -126,5 +137,6 @@
 
 
 @push('scripts')
+    <script src="https://ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js"></script>
     <script src="{{ asset('js/editor-script.js') }}"></script>
 @endpush

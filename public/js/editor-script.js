@@ -4,7 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const jsCode = document.getElementById("js-code");
     const output = document.getElementById("editor-output");
 
+    var editorHTML = ace.edit("editorHTML");
+    editorHTML.setTheme("ace/theme/monokai");
+    editorHTML.session.setMode("ace/mode/html");
+
     function run() {
+        htmlCode.value = editorHTML.getValue();
+
         // localStorage.setItem("html_code", htmlCode.value);
         // localStorage.setItem("css_code", cssCode.value);
         // localStorage.setItem("js_code", jsCode.value);
@@ -34,9 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let timeoutId;
 
-    htmlCode.addEventListener("keyup", waitOneSec);
+    // htmlCode.addEventListener("keyup", waitOneSec);
+
     cssCode.addEventListener("keyup", waitOneSec);
     jsCode.addEventListener("keyup", waitOneSec);
+    // editor.addEventListener("keyup", waitOneSec);
+    editorHTML.session.on("change", waitOneSec);
 
     function waitOneSec() {
         // Clear any existing timeout

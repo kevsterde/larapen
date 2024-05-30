@@ -17,12 +17,12 @@
                 <button class="text-gray-800 px-3 py-1 hover:bg-gray-800 hover:text-white rounded mx-2">Private</button>
                 <button class="text-gray-800 px-3 py-1 hover:bg-gray-800 hover:text-white rounded mx-2">Loved</button>
             </div>
-            @include('components.editorCard')
-            @include('components.editorCard')
-            @include('components.editorCard')
-            @include('components.editorCard')
-            @include('components.editorCard')
-            @include('components.editorCard')
+
+            @forelse ($pens as $pen)
+                @include('components.editorCard')
+            @empty
+                <h1>No Data</h1>
+            @endforelse
 
         </div>
     </div>
