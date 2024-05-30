@@ -1,66 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![image](https://github.com/kevsterde/larapen/assets/96121161/79db6c16-0e07-4c1a-ae39-626c28e7ad03)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Larapen is a CodePen clone built using the Laravel framework. It allows users to create, edit, and share HTML, CSS, and JavaScript code snippets in a web-based editor, similar to CodePen.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
+- [License](#license)
+- [Sample](#sample)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Introduction
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Larapen is designed to provide a seamless experience for developers to experiment with web technologies and share their creations. Leveraging Laravel's powerful backend capabilities, Larapen ensures a smooth and efficient workflow for managing and displaying code snippets.
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- User authentication and profile management
+- Create, edit, and delete code snippets (HTML, CSS, JavaScript)
+- Live preview of code snippets
+- Responsive design for both desktop and mobile devices
+- Syntax highlighting and code formatting with Ace Editor
+- Shareable links for code snippets
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Follow these steps to set up Larapen on your local machine:
 
-## Laravel Sponsors
+1. **Clone the repository:**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+   ```bash
+   git clone https://github.com/yourusername/larapen.git
+   cd larapen
 
-### Premium Partners
+2. **Install dependencies:**
+      ```bash
+    composer install
+              
+4. Copy the .env file and generate the application key:
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+6. Configure your database in the .env file:
+   ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=your_database_name
+    DB_USERNAME=your_database_user
+    DB_PASSWORD=your_database_password
+
+8. Run migrations and seed the database:
+   ```bash
+   php artisan migrate --seed
+
+10. Serve the application:
+    ```bash
+    php artisan serve
+
+Visit http://127.0.0.1:8000 in your browser to see the application.
+
+
+## Usage
+
+- Register or log in to your account.
+- Create a new code snippet by navigating to the editor.
+- Write your HTML, CSS, and JavaScript code in the respective fields.
+- Preview your code in real-time.
+- Save your snippet and share the link with others.
+
+## Configuration
+
+To customize Larapen, you can modify the following configuration files:
+
+.env: Environment-specific settings, such as database credentials and application keys.
+config/app.php: General application configuration.
+config/auth.php: Authentication settings.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+We welcome contributions from the community! To contribute to Larapen, follow these steps:
 
-## Code of Conduct
+- Fork the repository and clone it to your local machine.
+- Create a new branch for your feature or bug fix.
+- Make your changes and commit them with descriptive messages.
+- Push your changes to your forked repository.
+- Submit a pull request to the main repository.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Please ensure your code follows our code style guidelines and includes appropriate tests.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Larapen is open-source software licensed under the MIT license.
+
+## Sample
+
+![image](https://github.com/kevsterde/larapen/assets/96121161/adf14799-562c-4492-b24d-beae868022c1)
+![image](https://github.com/kevsterde/larapen/assets/96121161/482e93f9-eb93-4dc6-89dd-22b040e2c32e)
+
+
+
+
+
+
+
+
