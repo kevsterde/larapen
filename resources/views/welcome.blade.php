@@ -5,7 +5,7 @@
 @section('content')
 
 
-    <div class="relative flex flex-wrap gap-5 justify-center p-10 min-h-screen items-start">
+    <div class="relative flex flex-wrap gap-5  p-10 min-h-screen ">
         @forelse ($pens as $pen)
             @include('components.editorCard')
         @empty

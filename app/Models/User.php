@@ -49,4 +49,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(Editor::class)->latest('updated_at');
     }
+
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'follower_user', 'follower_id', 'user_id')->withTimestamps();
+    }
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follower_user', 'user_id', 'follower_id')->withTimestamps();
+    }
+    public function follows(User $user){
+        return $this->followings()->where('user_id',$user->id)->first();
+    }
+
+    public function love()
+    {
+        return $this->belongsToMany(Editor::class, 'lovepens', 'user_id', 'code_id')->withTimestamps();
+    }
 }

@@ -12,9 +12,15 @@ class DashboardController extends Controller
 
         $pen = Editor::orderby('updated_at','desc');
 
+        // dd(request()->has('search'));
+        if(request()->has('search'))
+        {
+            $pen = $pen->where("title", 'like' ,'%' . request()->get('search'). '%');
+        }
+
         return view(
             "welcome",
-            ['pens' => $pen->paginate('6')]
+            ['pens' => $pen->paginate('8')]
         );
     }
 
@@ -43,8 +49,21 @@ class DashboardController extends Controller
             <head>
                 <link href='https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css' rel='stylesheet'>
                 <style>{$cssContent}</style>
+                <style>
+                body {
+                    zoom: 70%;
+                    -moz-transform: scale(0.7);
+                    -moz-transform-origin: top;
+                    -webkit-transform: scale(0.7);
+                    -webkit-transform-origin: top;
+                    -o-transform: scale(0.7);
+                    -o-transform-origin: top;
+                    -ms-transform: scale(0.7);
+                    -ms-transform-origin: top;
+                }
+            </style>
             </head>
-            <body>{$htmlContent}
+            <body style='overflow:hidden;'>{$htmlContent}
                 <script> {$jsContent} </script>
             </body>
             </html>";

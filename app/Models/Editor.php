@@ -28,4 +28,8 @@ class Editor extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function lover(){
+        return $this->belongsToMany(User::class,'lovepens','code_id','user_id')->withTimestamps();
+    }
 }
