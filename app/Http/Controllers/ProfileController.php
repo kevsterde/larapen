@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Editor;
 use App\Models\User;
+
 class ProfileController extends Controller
 {
     //
@@ -13,9 +14,9 @@ class ProfileController extends Controller
 
 
         // $pen = Editor::where('user_id',auth()->user()->id)->orderby('updated_at','desc');
-        $pens = $user->editors()->paginate(6);
+        $pens = $user->editors()->paginate(8);
 
-        return view('profile.profilePage', compact('pens','user'));
+        return view('profile.profilePage', compact('pens', 'user'));
     }
 
     public function profile()
@@ -24,4 +25,25 @@ class ProfileController extends Controller
     }
 
 
+    public function follow(User $user)
+    {
+        $follower = auth()->user();
+
+        $follower->followings()->attach($user);
+
+
+
+        return redirect()->route('otherprofile',$user->id);
+    }
+
+
+    public function unfollow(User $user)
+    {
+
+        $follower = auth()->user();
+
+        $follower->followings()->detach($user);
+
+        return redirect()->route('otherprofile',$user->id);
+    }
 }

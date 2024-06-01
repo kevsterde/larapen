@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('bio')->default('');
+            $table->string('bio')->default('No Bio provided.');
             $table->rememberToken();
             $table->timestamps();
         });

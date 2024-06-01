@@ -41,6 +41,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::put('/editor/{user_id}/{id}', [EditorController::class, 'update'])->middleware('auth')->name('editor.update');
 
+
+    Route::post('/user/{user}/follow', [ProfileController::class, 'follow'])->name('user.follow');
+    Route::post('/user/{user}/unfollow', [ProfileController::class, 'unfollow'])->name('user.unfollow');
+
+    Route::post('/editor/love/{editor}', [EditorController::class, 'love'])->name('editor.love');
+    Route::post('/editor/unlove/{editor}', [EditorController::class, 'unlove'])->name('editor.unlove');
+
+
 });
 // Route::get('/editor/{id}', function() {
 //     return redirect('/');
@@ -52,6 +60,10 @@ Route::get('/editor/{user_id}/{id}', [EditorController::class, 'index'])->name('
 
 
 Route::get('/profile', [ProfileController::class, 'profile'])->middleware('auth')->name('profile');
+Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('otherprofile');
+
+
+
 Route::get('/404', [DashboardController::class, 'notFound'])->name('404');
 
 Route::get('/{id}', [DashboardController::class, 'iframeContent'])->name('iframeContent');
