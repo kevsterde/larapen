@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('csscode')->nullable();
             $table->text('jscode')->nullable();
             $table->timestamps();
-            
+
         });
     }
 
