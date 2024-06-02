@@ -94,5 +94,15 @@ class EditorController extends Controller
     }
     public function unlove(Editor $editor){
 
+
+        $lover = auth()->user();
+
+        $lover->love()->detach($editor->code_id);
+
+        return redirect()->route('editor.display',
+
+        ['user_id' => $editor->user, 'id' => $editor->code_id]
+    );
+
     }
 }

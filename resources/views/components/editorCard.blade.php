@@ -1,4 +1,5 @@
-<div class="w-[24%] bg-gray-900 relative rounded-lg mt-[100px] p-4">
+<div
+    class="w-[24%] bg-[#1c1f26] relative rounded-xl mt-[100px] p-4 border border-solid border-white shadow-2xl self-start">
     <a class="absolute inset-0" href={{ route('editor.display', ['user_id' => $pen->user, 'id' => $pen->code_id]) }}></a>
     <div class="w-full aspect-[16/11] bg-white overflow-hidden border border-solid rounded-lg mt-[-100px] ">
         <iframe class="pointer-events-none overflow-hidden" src={{ route('iframeContent', $pen->code_id) }}

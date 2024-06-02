@@ -32,4 +32,7 @@ class Editor extends Model
     public function lover(){
         return $this->belongsToMany(User::class,'lovepens','code_id','user_id')->withTimestamps();
     }
+
+
+
 }

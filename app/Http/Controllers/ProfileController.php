@@ -12,9 +12,21 @@ class ProfileController extends Controller
     public function show(User $user)
     {
 
-
+        $type = request('type','pens');
         // $pen = Editor::where('user_id',auth()->user()->id)->orderby('updated_at','desc');
-        $pens = $user->editors()->paginate(8);
+
+        if($type == 'love')
+        {
+
+            $pens = $user->love()->paginate(8);
+        }
+        else
+        {
+
+            $pens = $user->editors()->paginate(8);
+        }
+
+
 
         return view('profile.profilePage', compact('pens', 'user'));
     }
