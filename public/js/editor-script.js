@@ -7,9 +7,22 @@ document.addEventListener("DOMContentLoaded", function () {
     var editorHTML = ace.edit("editorHTML");
     editorHTML.setTheme("ace/theme/monokai");
     editorHTML.session.setMode("ace/mode/html");
+    editorHTML.setOption("wrap", true);
+
+    var editorCSS = ace.edit("editorCSS");
+    editorCSS.setTheme("ace/theme/monokai");
+    editorCSS.session.setMode("ace/mode/css");
+    editorCSS.setOption("wrap", true);
+
+    var editorJS = ace.edit("editorJS");
+    editorJS.setTheme("ace/theme/monokai");
+    editorJS.session.setMode("ace/mode/javascript");
+    editorJS.setOption("wrap", true);
 
     function run() {
         htmlCode.value = editorHTML.getValue();
+        cssCode.value = editorCSS.getValue();
+        jsCode.value = editorJS.getValue();
 
         // localStorage.setItem("html_code", htmlCode.value);
         // localStorage.setItem("css_code", cssCode.value);
@@ -42,10 +55,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // htmlCode.addEventListener("keyup", waitOneSec);
 
-    cssCode.addEventListener("keyup", waitOneSec);
-    jsCode.addEventListener("keyup", waitOneSec);
+    // cssCode.addEventListener("keyup", waitOneSec);
+    // jsCode.addEventListener("keyup", waitOneSec);
     // editor.addEventListener("keyup", waitOneSec);
     editorHTML.session.on("change", waitOneSec);
+    editorCSS.session.on("change", waitOneSec);
+    editorJS.session.on("change", waitOneSec);
 
     function waitOneSec() {
         // Clear any existing timeout

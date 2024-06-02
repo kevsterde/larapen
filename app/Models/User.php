@@ -66,4 +66,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Editor::class, 'lovepens', 'user_id', 'code_id')->withTimestamps();
     }
+
+    public function checkLove($editorid)
+    {
+        return $this->love()->where('editors.code_id',$editorid)->first();
+    }
+
+
 }

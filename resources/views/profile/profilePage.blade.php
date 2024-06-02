@@ -12,10 +12,20 @@
         <div class="w-full flex flex-col items-center gap-4">
             <div class="w-fit bg-white flex gap-2 items-center px-4 py-1 rounded mt-10">
                 <h2 class="text-xl font-bold mr-4">Showcase</h2>
-                <button class=" px-3 py-1 bg-gray-800 text-white rounded mx-2">Popular</button>
-                <button class="text-gray-800 px-3 py-1 hover:bg-gray-800 hover:text-white rounded mx-2">Public</button>
-                <button class="text-gray-800 px-3 py-1 hover:bg-gray-800 hover:text-white rounded mx-2">Private</button>
-                <button class="text-gray-800 px-3 py-1 hover:bg-gray-800 hover:text-white rounded mx-2">Loved</button>
+
+                <a href="{{ route('otherprofile', ['user' => $user->id, 'type' => 'pens']) }}"
+                    class="px-3 py-1 {{ request('type') !== 'love' ? 'bg-gray-800 text-white' : 'text-gray-800 hover:bg-gray-800 hover:text-white' }} rounded mx-2">My
+                    Pens</a>
+
+
+                @auth
+                    @if (Auth::user()->id === $user->id)
+                        <a href="{{ route('otherprofile', ['user' => $user->id, 'type' => 'love']) }}"
+                            class="px-3 py-1 {{ request('type') === 'love' ? 'bg-gray-800 text-white' : 'text-gray-800 hover:bg-gray-800 hover:text-white' }} rounded mx-2">Loved
+                            Pens</a>
+                    @endif
+                @endauth
+
             </div>
             <div class="flex gap-4 w-full flex-wrap  px-4 justify-center">
 

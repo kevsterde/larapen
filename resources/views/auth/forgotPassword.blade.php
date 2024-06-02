@@ -10,7 +10,7 @@
         <h1 class="text-white text-center text-4xl font-bold uppercase">Reset Your Password</h1>
 
         <form action="" class="backdrop-blur-3xl  bg-[#D9D9D9] bg-opacity-20  rounded-lg p-5 mt-4">
-            <a href={{ route('login') }} class="hover:underline mb-4 block max-w-fit text-white">Back</a>
+
             <div class="relative mb-5">
                 <input type="text" id="email" name="email"
                     class="block rounded px-2.5 pb-2.5 pt-5 w-full text-sm text-white bg-[#003C43] bg-opacity-50  appearance-none focus:outline-none focus:ring-0 focus:border-white peer  border border-1 border-white"
@@ -30,6 +30,7 @@ w-full uppercase cursor-pointer
                     "
                     value="Reset">
             </div>
+            <a href={{ route('login') }} class="hover:underline block max-w-fit text-white">Back</a>
         </form>
 
     </div>

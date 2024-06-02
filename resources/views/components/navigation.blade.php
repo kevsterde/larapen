@@ -77,10 +77,7 @@
                     class="font-semibold text-white hover:text-secondaryColor  focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
                     in</a>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}"
-                        class="ml-4 font-semibold text-white hover:text-secondaryColor  focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                @endif
+
             @endauth
         </div>
     @endif
