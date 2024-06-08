@@ -4,9 +4,14 @@
 
 @section('content')
 
+    {{-- <form action="{{ isset($editor) ? route('editor.update', $editor->user_id, $editor->code_id) : route('editor.add') }}"
+        method="post"> --}}
+
     <form
-        action="{{ isset($editor) ? route('editor.update', ['user_id' => $editor->user_id, 'id' => $editor->code_id]) : route('editor.add') }}"
+        action="{{ isset($editor) ? route('editor.update', ['user' => $editor->user_id, 'editor' => $editor->code_id]) : route('editor.add') }}"
         method="post">
+
+
         @auth @csrf @endauth
 
         @if (isset($editor))

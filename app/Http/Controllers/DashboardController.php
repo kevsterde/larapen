@@ -29,19 +29,16 @@ class DashboardController extends Controller
     }
 
 
-    public function iframeContent($id){
+    public function iframeContent(Editor $editor){
 
 
-            $pen = Editor::where('code_id',$id)->first();
+            // $pen = Editor::where('code_id',$editor)->first();
 
-            if(!$pen)
-            {
-                abort(404,'Content not found');
-            }
+            // no need to use where since code_id naman ang gipasa sa src route
 
-            $htmlContent = $pen->htmlcode;
-            $cssContent = $pen->csscode;
-            $jsContent = $pen->jscode;
+            $htmlContent = $editor->htmlcode;
+            $cssContent = $editor->csscode;
+            $jsContent = $editor->jscode;
 
 
             $fullHtmlContent ="<!DOCTYPE html>

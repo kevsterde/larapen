@@ -8,7 +8,7 @@
         <a href={{ route('home') }}><img class=" w-24 sm:w-40 mx-auto mb-5" src="/images/logo.png" alt="logo"></a>
         <h1 class="text-white text-center text-4xl font-bold uppercase">Welcome To Larapen</h1>
 
-        <form action={{ route('register') }} class="rounded-lg p-5 mt-4 bg-[#D9D9D9] bg-opacity-20 backdrop-blur-md"
+        <form action={{ route('registerAuth') }} class="rounded-lg p-5 mt-4 bg-[#D9D9D9] bg-opacity-20 backdrop-blur-md"
             method="POST">
             @csrf
             <div class=" mt-3">

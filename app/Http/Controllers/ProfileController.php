@@ -33,7 +33,8 @@ class ProfileController extends Controller
 
     public function profile()
     {
-        return $this->show(auth()->user());
+        return redirect()->route('otherprofile',auth()->user());
+        // return $this->show(auth()->user());
     }
 
 
