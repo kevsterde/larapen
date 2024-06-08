@@ -1,20 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
     const htmlCode = document.getElementById("html-code");
+
     const cssCode = document.getElementById("css-code");
     const jsCode = document.getElementById("js-code");
     const output = document.getElementById("editor-output");
 
+    function trimLeadingWhitespace(str) {
+        return str.replace(/^\s+/gm, "");
+    }
+
+    // console.log(htmlCode);
+    var trimmedHTML = trimLeadingWhitespace(htmlCode.value);
+    var trimmedCSS = trimLeadingWhitespace(cssCode.value);
+    var trimmedJS = trimLeadingWhitespace(jsCode.value);
+
     var editorHTML = ace.edit("editorHTML");
+    editorHTML.setValue(trimmedHTML, -1);
     editorHTML.setTheme("ace/theme/monokai");
     editorHTML.session.setMode("ace/mode/html");
     editorHTML.setOption("wrap", true);
 
     var editorCSS = ace.edit("editorCSS");
+    editorCSS.setValue(trimmedCSS, -1);
     editorCSS.setTheme("ace/theme/monokai");
     editorCSS.session.setMode("ace/mode/css");
     editorCSS.setOption("wrap", true);
 
     var editorJS = ace.edit("editorJS");
+    editorJS.setValue(trimmedJS, -1);
     editorJS.setTheme("ace/theme/monokai");
     editorJS.session.setMode("ace/mode/javascript");
     editorJS.setOption("wrap", true);
@@ -68,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
             clearTimeout(timeoutId);
         }
         // Set a new timeout to call the run function after 1 second
-        timeoutId = setTimeout(run, 1000);
+        timeoutId = setTimeout(run, 800);
     }
 
     // Wait for the iframe to load before running the code

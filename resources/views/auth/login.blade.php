@@ -10,7 +10,7 @@
 
         @include('components.succesMessage')
 
-        <form action={{ route('login') }} class="backdrop-blur-3xl bg-[#D9D9D9] bg-opacity-20 rounded-lg p-5 mt-4"
+        <form action={{ route('loginAuth') }} class="backdrop-blur-3xl bg-[#D9D9D9] bg-opacity-20 rounded-lg p-5 mt-4"
             method="POST">
             @csrf
 

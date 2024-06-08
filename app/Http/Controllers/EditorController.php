@@ -10,26 +10,41 @@ use Illuminate\Support\Facades\Auth;
 
 class EditorController extends Controller
 {
-    //
 
-    public function index($user_id = null, $id = null)
+    // public function index($user_id = null, $id = null)
+    public function index(User $user)
+    {
+        $editor = null;
+        // if ($user_id && $id) {
+        //     $editor = Editor::where('user_id', $user_id)->where('code_id', $id)->first();
+        // }
+        // before and after
+        // if($editor->user_id != $user->id) { return redirect()->route('404'); }
+
+
+        // if ($editor == null && Auth::user() == null) {
+        //     return redirect()->route('404');
+        // }
+        // before and after
+        // If the editor is not found or the user is not authenticated, redirect to 404
+            // if(!$editor && !Auth::check())
+            // {
+            //     return redirect()->route('404');
+            // }
+
+        return view('Editor.editor', compact('editor'));
+    }
+
+    public function show(User $user, Editor $editor)
     {
 
 
+        if($editor->user_id != $user->id) { return redirect()->route('404'); }
 
-
-
-        $editor = null;
-
-
-        if ($user_id && $id) {
-            $editor = Editor::where('user_id', $user_id)->where('code_id', $id)->first();
-        }
-
-        if ($editor == null && Auth::user() == null) {
+        if(!$editor && !Auth::check())
+        {
             return redirect()->route('404');
         }
-
 
         return view('Editor.editor', compact('editor'));
     }
@@ -53,25 +68,29 @@ class EditorController extends Controller
         //  dd($userWithEditors->editors);
 
         //  return redirect('/editor/'. $result->user_id . '/' .$result->id)->with('success', 'Editor Created Successfully');
-        return redirect()->route('editor.display', ['user_id' => $result->user_id, 'id' => $result->code_id])
-            ->with('success', 'Editor Created Successfully');
+        // return redirect()->route('editor.display', ['user_id' => $result->user_id, 'id' => $result->code_id])
+        //     ->with('success', 'Editor Created Successfully');
+
+        return redirect()->route('editor.display', ['user' => $Authuser->id, 'editor' => $result->code_id])
+        ->with('success', 'Created Updated Successfully');
+
+
     }
 
 
-    public function update(Request $request, $user_id, $id)
+    public function update(Request $request,User $user, Editor $editor)
+    // public function update(Request $request, $user_id, $id)
     {
+        // if ($id == null) {
+        //     return redirect()->route('404');
+        // }
 
-        if ($id == null) {
-            return redirect()->route('404');
-        }
+        // $editorId = Editor::where('code_id', $id)->first();
 
-        $editorId = Editor::where('code_id', $id)->first();
+        $editor->update($request->all());
 
-        $editorId->update($request->all());
 
-        // dd($request->all());
-
-        return redirect()->route('editor.display', ['user_id' => $editorId->user_id, 'id' => $editorId->code_id])
+        return redirect()->route('editor.display', ['user' => $editor->user_id, 'editor' => $editor->code_id])
             ->with('success', 'Editor Updated Successfully');
     }
 
@@ -86,11 +105,11 @@ class EditorController extends Controller
             $lover->love()->attach($editor->code_id);
         }
 
-        return redirect()->route('editor.display',
+    //     return redirect()->route('editor.display',
 
-        ['user_id' => $editor->user, 'id' => $editor->code_id]
-    );
-
+    //     ['user_id' => $editor->user, 'id' => $editor->code_id]
+    // );
+    return redirect()->route('editor.display', ['user' => $editor->user_id, 'editor' => $editor->code_id]);
     }
     public function unlove(Editor $editor){
 
@@ -99,10 +118,25 @@ class EditorController extends Controller
 
         $lover->love()->detach($editor->code_id);
 
-        return redirect()->route('editor.display',
+    //     return redirect()->route('editor.display',
 
-        ['user_id' => $editor->user, 'id' => $editor->code_id]
-    );
+    //     ['user_id' => $editor->user, 'id' => $editor->code_id]
+    // );
+    return redirect()->route('editor.display', ['user' => $editor->user_id, 'editor' => $editor->code_id]);
+    }
+
+    public function destroy( User $user,Editor $editor)
+    {
+        if($user->id != $editor->user_id)
+        {
+            abort(404);
+        }
+
+        $editor->delete();
+
+
+        return redirect()->route('profile');
+
 
     }
 }
