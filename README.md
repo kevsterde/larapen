@@ -97,7 +97,7 @@ Please ensure your code follows our code style guidelines and includes appropria
 
 Larapen is open-source software licensed under the MIT license.
 
-## Sample
+## Sample Sample
 
 ![image](https://github.com/kevsterde/larapen/assets/96121161/adf14799-562c-4492-b24d-beae868022c1)
 ![image](https://github.com/kevsterde/larapen/assets/96121161/482e93f9-eb93-4dc6-89dd-22b040e2c32e)
